@@ -1,6 +1,9 @@
+import manifest from "@/app/manifest";
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+
+const { name, description } = manifest();
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -13,9 +16,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "so smol, so cute",
-  description:
-    "For all kitten lovers, it's your daily dose of cuteness and joy. 🐾✨",
+  title: name,
+  description: description,
 };
 
 export default function RootLayout({
