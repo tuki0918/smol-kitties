@@ -1,0 +1,3 @@
+npm run check
+npm run test:ci
+npm run build:check
