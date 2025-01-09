@@ -17,11 +17,13 @@
     "build-storybook": "storybook build"
   },
   "dependencies": {
+    "clsx": "^2.1.1",
     "dotenv-zod-validator": "^1.5.0",
     "lucide-react": "^0.469.0",
     "next": "15.1.3",
     "react": "^19",
-    "react-dom": "^19"
+    "react-dom": "^19",
+    "tailwind-merge": "^2.6.0"
   },
   "devDependencies": {
     "@biomejs/biome": "1.9.4",
