@@ -1,6 +1,12 @@
+enum PostStatus {
+  pending
+  published
+  private
+}
+
 model Post {
   // Unique ID
-  id        Int      @id
+  id        Int        @id
   message   String
   // URL of the image
   image     String
@@ -8,10 +14,11 @@ model Post {
   video     String
   // URL of the original post
   reference String
+  status    PostStatus @default(pending)
   likes     Int
   dislikes  Int
-  createdAt DateTime @default(now()) @map("created_at")
-  updatedAt DateTime @updatedAt @map("updated_at")
+  createdAt DateTime   @default(now()) @map("created_at")
+  updatedAt DateTime   @updatedAt @map("updated_at")
   user_id   String
 
   // Relation: 1:1
