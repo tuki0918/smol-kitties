@@ -17,6 +17,7 @@
     "build-storybook": "storybook build"
   },
   "dependencies": {
+    "@prisma/client": "^6.2.1",
     "clsx": "^2.1.1",
     "dotenv-zod-validator": "^1.5.0",
     "lucide-react": "^0.469.0",
