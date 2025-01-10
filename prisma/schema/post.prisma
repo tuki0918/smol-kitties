@@ -1,0 +1,19 @@
+model Post {
+  // Unique ID
+  id        Int      @id
+  message   String
+  // URL of the image
+  image     String
+  // URL of the video file (MP4)
+  video     String
+  // URL of the original post
+  reference String
+  likes     Int
+  dislikes  Int
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+  user_id   String
+
+  // Relation: 1:1
+  user User @relation(fields: [user_id], references: [id])
+}

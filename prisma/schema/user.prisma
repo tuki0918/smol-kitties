@@ -1,0 +1,11 @@
+model User {
+  // Unique ID
+  id          String @id
+  // Username with "@"
+  username    String @unique
+  // Display name
+  displayName String @map("display_name")
+  // URL of the avatar image
+  avatarUrl   String @map("avatar_url")
+  Post        Post[]
+}
