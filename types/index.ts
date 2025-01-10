@@ -1,9 +1,9 @@
 export interface VideoPost {
   id: number;
-  content: string;
-  imageUrl: string;
-  videoUrl: string;
-  refarenceUrl: string;
+  message: string;
+  image: string;
+  video: string;
+  reference: string;
   likes: number;
   dislikes: number;
   user: User;

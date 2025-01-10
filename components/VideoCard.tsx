@@ -47,14 +47,14 @@ export default function VideoCard({ video }: VideoCardProps) {
   return (
     <div className="relative h-screen w-full bg-black snap-start overflow-hidden">
       <img
-        src={video.imageUrl}
+        src={video.image}
         className="absolute inset-0 w-full h-full object-cover blur-xl scale-110 opacity-50"
         alt="Background blur"
       />
 
       <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 h-full max-h-screen w-[56.25vh] bg-black">
         <video
-          src={video.videoUrl}
+          src={video.video}
           className={"w-full h-full object-cover"}
           loop
           muted
@@ -64,7 +64,7 @@ export default function VideoCard({ video }: VideoCardProps) {
 
       <div className="absolute bottom-4 left-4 right-16 text-white">
         <h3 className="font-semibold text-lg">{video.user.username}</h3>
-        <p className="text-sm mt-2">{video.content}</p>
+        <p className="text-sm mt-2">{video.message}</p>
       </div>
 
       <div className="absolute top-20 right-4">
