@@ -1,14 +1,14 @@
 import type { Prisma } from "@prisma/client";
 import { z } from "zod";
 
-const UserSchema = z.object({
+export const UserSchema = z.object({
   id: z.string(),
   username: z.string().min(1),
   display_name: z.string().min(1),
   avatar: z.string().url(),
 });
 
-const UserDraftSchema = UserSchema.omit({ id: true });
+export const UserDraftSchema = UserSchema.omit({ id: true });
 
 export type UserDraftType = z.infer<typeof UserDraftSchema>;
 export type UserType = z.infer<typeof UserSchema>;
