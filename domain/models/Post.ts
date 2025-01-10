@@ -1,7 +1,7 @@
 import type { Prisma } from "@prisma/client";
 import { z } from "zod";
 
-const PostSchema = z.object({
+export const PostSchema = z.object({
   id: z.number(),
   user_id: z.string(),
   message: z.string(),
@@ -10,10 +10,9 @@ const PostSchema = z.object({
   reference: z.string().url(),
   likes: z.number(),
   dislikes: z.number(),
-  timestamp: z.date(),
 });
 
-const PostDraftSchema = PostSchema.omit({ id: true });
+export const PostDraftSchema = PostSchema.omit({ id: true });
 
 export type PostDraftType = z.infer<typeof PostDraftSchema>;
 export type PostType = z.infer<typeof PostSchema>;
@@ -26,7 +25,6 @@ export class PostDraft {
   readonly reference: string;
   readonly likes: number;
   readonly dislikes: number;
-  readonly timestamp: Date;
 
   protected constructor(data: PostDraftType) {
     this.userId = data.user_id;
@@ -36,7 +34,6 @@ export class PostDraft {
     this.reference = data.reference;
     this.likes = data.likes;
     this.dislikes = data.dislikes;
-    this.timestamp = data.timestamp;
   }
 
   static create(data: PostDraftType): PostDraft {
