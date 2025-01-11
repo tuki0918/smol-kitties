@@ -55,14 +55,19 @@ export default function VideoCard({ video }: VideoCardProps) {
       <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 h-full max-h-screen w-[56.25vh] bg-black">
         <video
           src={video.video}
-          className={"w-full h-full object-cover"}
+          className={"select-none w-full h-full object-cover"}
           loop
           muted
+          playsInline
           ref={videoRef}
         />
-        <div className="absolute top-4 right-4">
+        <div className="hidden md:block absolute top-4 right-4">
           <VolumeButton />
         </div>
+      </div>
+
+      <div className="block md:hidden absolute top-4 right-4">
+        <VolumeButton />
       </div>
 
       <div className="absolute bottom-4 left-4 right-16 text-white">
