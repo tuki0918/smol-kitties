@@ -20,6 +20,7 @@
     "@prisma/client": "^6.2.1",
     "clsx": "^2.1.1",
     "dotenv-zod-validator": "^1.5.0",
+    "jotai": "^2.11.0",
     "lucide-react": "^0.469.0",
     "next": "15.1.3",
     "react": "^19",
