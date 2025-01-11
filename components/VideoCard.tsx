@@ -74,12 +74,14 @@ export default function VideoCard({ video }: VideoCardProps) {
 
   return (
     <div className="relative h-screen w-full bg-black snap-start overflow-hidden">
+      {/* Background */}
       <img
         src={video.image}
         className="absolute inset-0 w-full h-full object-cover blur-xl scale-110 opacity-50"
         alt="Background blur"
       />
 
+      {/* Video */}
       <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 h-full max-h-screen w-full md:w-auto bg-black">
         {isVideoCover && (
           <div className="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center">
@@ -112,6 +114,7 @@ export default function VideoCard({ video }: VideoCardProps) {
         </div>
       </div>
 
+      {/* Global Menu */}
       <div className="block md:hidden absolute top-4 right-4">
         <div className="flex flex-col space-y-2">
           <VolumeButton />
@@ -119,6 +122,7 @@ export default function VideoCard({ video }: VideoCardProps) {
         </div>
       </div>
 
+      {/* Video Info */}
       <div className="absolute bottom-4 left-4 right-16 text-white">
         <h3 className="font-semibold text-lg">{video.user.username}</h3>
         <p className="text-sm mt-2">{video.message}</p>
