@@ -64,7 +64,7 @@ export default function VideoCard({ video }: VideoCardProps) {
         alt="Background blur"
       />
 
-      <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 h-full max-h-screen bg-black">
+      <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 h-full max-h-screen w-full md:w-auto bg-black">
         {isVideoCover && (
           <div className="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center">
             <button
