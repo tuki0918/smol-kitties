@@ -1,23 +1,23 @@
 "use client";
 
+import VolumeButton, { volumeAtom } from "@/components/VolumeButton";
 import type { VideoPost } from "@/types";
-import { Volume2, VolumeOff } from "lucide-react";
-import { useEffect, useRef, useState } from "react";
+import { useAtomValue } from "jotai";
+import { useEffect, useRef } from "react";
 
 interface VideoCardProps {
   video: VideoPost;
 }
 
 export default function VideoCard({ video }: VideoCardProps) {
-  const [isMuted, setIsMuted] = useState(true);
+  const isVolumeOn = useAtomValue(volumeAtom);
   const videoRef = useRef<HTMLVideoElement>(null);
 
-  const handleVolumeToggle = () => {
+  useEffect(() => {
     if (videoRef.current) {
-      videoRef.current.muted = !videoRef.current.muted;
-      setIsMuted(videoRef.current.muted);
+      videoRef.current.muted = !isVolumeOn;
     }
-  };
+  }, [isVolumeOn]);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -60,25 +60,14 @@ export default function VideoCard({ video }: VideoCardProps) {
           muted
           ref={videoRef}
         />
+        <div className="absolute top-4 right-4">
+          <VolumeButton />
+        </div>
       </div>
 
       <div className="absolute bottom-4 left-4 right-16 text-white">
         <h3 className="font-semibold text-lg">{video.user.username}</h3>
         <p className="text-sm mt-2">{video.message}</p>
-      </div>
-
-      <div className="absolute top-20 right-4">
-        <button
-          type="button"
-          className="w-12 h-12 bg-gray-800 rounded-full flex items-center justify-center"
-          onClick={handleVolumeToggle}
-        >
-          {isMuted ? (
-            <VolumeOff className="w-6 h-6 text-white" />
-          ) : (
-            <Volume2 className="w-6 h-6 text-white" />
-          )}
-        </button>
       </div>
     </div>
   );
