@@ -14,7 +14,7 @@ export default function VolumeButton() {
   return (
     <button
       type="button"
-      className="w-12 h-12 bg-gray-800 rounded-full flex items-center justify-center"
+      className="w-12 h-12 bg-black bg-opacity-85 rounded-full flex items-center justify-center"
       onClick={toggleVolume}
     >
       {isVolumeOn ? (

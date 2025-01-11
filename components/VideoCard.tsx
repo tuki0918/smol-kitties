@@ -3,7 +3,8 @@
 import VolumeButton, { volumeAtom } from "@/components/VolumeButton";
 import type { VideoPost } from "@/types";
 import { useAtomValue } from "jotai";
-import { useEffect, useRef } from "react";
+import { Play } from "lucide-react";
+import { useEffect, useRef, useState } from "react";
 
 interface VideoCardProps {
   video: VideoPost;
@@ -12,6 +13,7 @@ interface VideoCardProps {
 export default function VideoCard({ video }: VideoCardProps) {
   const isVolumeOn = useAtomValue(volumeAtom);
   const videoRef = useRef<HTMLVideoElement>(null);
+  const [isVideoCover, setVideoCover] = useState(false);
 
   useEffect(() => {
     if (videoRef.current) {
@@ -19,12 +21,22 @@ export default function VideoCard({ video }: VideoCardProps) {
     }
   }, [isVolumeOn]);
 
+  const handleVideoClick = () => {
+    if (isVideoCover) {
+      videoRef.current?.play();
+    } else {
+      videoRef.current?.pause();
+    }
+    setVideoCover(!isVideoCover);
+  };
+
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
         for (const entry of entries) {
           if (entry.isIntersecting) {
             videoRef.current?.play();
+            setVideoCover(false);
           } else {
             videoRef.current?.pause();
           }
@@ -52,13 +64,27 @@ export default function VideoCard({ video }: VideoCardProps) {
         alt="Background blur"
       />
 
-      <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 h-full max-h-screen w-[56.25vh] bg-black">
+      <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 h-full max-h-screen bg-black">
+        {isVideoCover && (
+          <div className="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center">
+            <button
+              type="button"
+              onClick={handleVideoClick}
+              className="w-24 h-24 bg-black bg-opacity-50 rounded-full flex items-center justify-center"
+            >
+              <Play className="w-12 h-12 text-white fill-white" />
+            </button>
+          </div>
+        )}
+
+        {/* biome-ignore lint/a11y/useKeyWithClickEvents: */}
         <video
           src={video.video}
           className={"select-none w-full h-full object-cover"}
           loop
           muted
           playsInline
+          onClick={handleVideoClick}
           ref={videoRef}
         />
         <div className="hidden md:block absolute top-4 right-4">
