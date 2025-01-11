@@ -1,5 +1,6 @@
 "use client";
 
+import VideoRepeatButton, { repeatAtom } from "@/components/VideoRepeatButton";
 import VolumeButton, { volumeAtom } from "@/components/VolumeButton";
 import type { VideoPost } from "@/types";
 import { useAtomValue } from "jotai";
@@ -12,6 +13,7 @@ interface VideoCardProps {
 
 export default function VideoCard({ video }: VideoCardProps) {
   const isVolumeOn = useAtomValue(volumeAtom);
+  const isRepeatOn = useAtomValue(repeatAtom);
   const videoRef = useRef<HTMLVideoElement>(null);
   const [isVideoCover, setVideoCover] = useState(false);
 
@@ -21,6 +23,12 @@ export default function VideoCard({ video }: VideoCardProps) {
     }
   }, [isVolumeOn]);
 
+  useEffect(() => {
+    if (videoRef.current) {
+      videoRef.current.loop = isRepeatOn;
+    }
+  }, [isRepeatOn]);
+
   const handleVideoClick = () => {
     if (isVideoCover) {
       videoRef.current?.play();
@@ -28,6 +36,14 @@ export default function VideoCard({ video }: VideoCardProps) {
       videoRef.current?.pause();
     }
     setVideoCover(!isVideoCover);
+  };
+
+  const handleVideoEnd = () => {
+    const nextElement =
+      videoRef.current?.closest(".h-screen")?.nextElementSibling;
+    if (nextElement) {
+      nextElement.scrollIntoView({ behavior: "smooth" });
+    }
   };
 
   useEffect(() => {
@@ -85,15 +101,22 @@ export default function VideoCard({ video }: VideoCardProps) {
           muted
           playsInline
           onClick={handleVideoClick}
+          onEnded={handleVideoEnd}
           ref={videoRef}
         />
         <div className="hidden md:block absolute top-4 right-4">
-          <VolumeButton />
+          <div className="flex flex-col space-y-2">
+            <VolumeButton />
+            <VideoRepeatButton />
+          </div>
         </div>
       </div>
 
       <div className="block md:hidden absolute top-4 right-4">
-        <VolumeButton />
+        <div className="flex flex-col space-y-2">
+          <VolumeButton />
+          <VideoRepeatButton />
+        </div>
       </div>
 
       <div className="absolute bottom-4 left-4 right-16 text-white">
