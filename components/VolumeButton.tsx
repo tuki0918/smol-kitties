@@ -20,7 +20,7 @@ export default function VolumeButton() {
       {isVolumeOn ? (
         <Volume2 className="w-6 h-6 text-white" />
       ) : (
-        <VolumeOff className="w-6 h-6 text-white" />
+        <VolumeOff className="w-6 h-6 text-gray-600" />
       )}
     </button>
   );
