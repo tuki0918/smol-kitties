@@ -106,8 +106,8 @@ export default function VideoCard({ video }: VideoCardProps) {
           onEnded={handleVideoEnd}
           ref={videoRef}
         />
-        <div className="hidden md:block absolute top-4 right-4">
-          <div className="flex flex-col space-y-2">
+        <div className="hidden md:block absolute top-4 left-4">
+          <div className="flex space-x-2">
             <VolumeButton />
             <VideoRepeatButton />
           </div>
@@ -115,17 +115,19 @@ export default function VideoCard({ video }: VideoCardProps) {
       </div>
 
       {/* Global Menu */}
-      <div className="block md:hidden absolute top-4 right-4">
-        <div className="flex flex-col space-y-2">
+      <div className="block md:hidden absolute top-4 left-4">
+        <div className="flex space-x-2">
           <VolumeButton />
           <VideoRepeatButton />
         </div>
       </div>
 
       {/* Video Info */}
-      <div className="absolute bottom-4 left-4 right-16 text-white">
-        <h3 className="font-semibold text-lg">{video.user.username}</h3>
-        <p className="text-sm mt-2">{video.message}</p>
+      <div className="absolute bottom-4 left-4">
+        <h3 className="font-semibold text-lg text-white">
+          {video.user.username}
+        </h3>
+        <p className="mt-2 text-sm text-white">{video.message}</p>
       </div>
     </div>
   );
