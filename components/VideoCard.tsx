@@ -84,11 +84,11 @@ export default function VideoCard({ video }: VideoCardProps) {
       {/* Video */}
       <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 h-full max-h-screen w-full md:w-auto bg-black">
         {isVideoCover && (
-          <div className="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center">
+          <div className="z-10 absolute inset-0 bg-black/50 flex items-center justify-center">
             <button
               type="button"
               onClick={handleVideoClick}
-              className="w-24 h-24 bg-black bg-opacity-50 rounded-full flex items-center justify-center"
+              className="w-24 h-24 bg-black/50 rounded-full flex items-center justify-center transform transition-all duration-300 hover:scale-110"
             >
               <Play className="w-12 h-12 text-white fill-white" />
             </button>
@@ -106,17 +106,18 @@ export default function VideoCard({ video }: VideoCardProps) {
           onEnded={handleVideoEnd}
           ref={videoRef}
         />
-        <div className="hidden md:block absolute top-4 left-4">
-          <div className="flex space-x-2">
+        {/* Global Menu (PC) */}
+        <div className="z-30 hidden md:block absolute top-4 left-4">
+          <div className="flex space-x-3">
             <VolumeButton />
             <VideoRepeatButton />
           </div>
         </div>
       </div>
 
-      {/* Global Menu */}
-      <div className="block md:hidden absolute top-4 left-4">
-        <div className="flex space-x-2">
+      {/* Global Menu (SP) */}
+      <div className="z-30 block md:hidden absolute top-4 left-4">
+        <div className="flex space-x-3">
           <VolumeButton />
           <VideoRepeatButton />
         </div>
