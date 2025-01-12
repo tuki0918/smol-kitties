@@ -12,9 +12,17 @@ export interface VideoPost {
   likes: number;
   dislikes: number;
   /** Relation */
+  tags: VideoTag[];
   user: User;
   /** Timestamp of last update */
   timestamp: Date;
+}
+
+export interface VideoTag {
+  /** Unique ID */
+  id: number;
+  /** Name without "#" */
+  name: string;
 }
 
 export interface User {
