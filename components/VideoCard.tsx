@@ -1,5 +1,7 @@
 "use client";
 
+import DisLikeButton from "@/components/DisLikeButton";
+import LikeButton from "@/components/LikeButton";
 import ShareButton from "@/components/ShareButton";
 import VideoRepeatButton, { repeatAtom } from "@/components/VideoRepeatButton";
 import VolumeButton, { volumeAtom } from "@/components/VolumeButton";
@@ -119,6 +121,8 @@ export default function VideoCard({ video }: VideoCardProps) {
         {/* Action Menu (PC) */}
         <div className="z-30 hidden md:block absolute -right-24 bottom-32">
           <div className="flex flex-col space-y-8">
+            <LikeButton video={video} />
+            <DisLikeButton video={video} />
             <ShareButton video={video} />
           </div>
         </div>
@@ -143,6 +147,8 @@ export default function VideoCard({ video }: VideoCardProps) {
       {/* Action Menu (SP) */}
       <div className="z-30 block md:hidden absolute right-4 bottom-32">
         <div className="flex flex-col space-y-8">
+          <LikeButton video={video} />
+          <DisLikeButton video={video} />
           <ShareButton video={video} />
         </div>
       </div>
