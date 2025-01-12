@@ -134,20 +134,26 @@ export default function VideoCard({ video }: VideoCardProps) {
         <h3 className="font-semibold text-lg text-white">
           {video.user.username}
         </h3>
-        <p className="mt-2 text-sm text-white">{video.message}</p>
-        <div className="mt-2 text-sm text-white space-x-2">
-          {video.tags.map((tag) => {
-            return (
-              <Link
-                key={tag.name}
-                href={`/#/${tag.name}`}
-                className="hover:underline"
-              >
-                #{tag.name}
-              </Link>
-            );
-          })}
-        </div>
+
+        {video.message !== "" && (
+          <p className="mt-2 text-sm text-white">{video.message}</p>
+        )}
+
+        {video.tags.length > 0 && (
+          <div className="mt-2 text-sm text-white space-x-2">
+            {video.tags.map((tag) => {
+              return (
+                <Link
+                  key={tag.name}
+                  href={`/#/${tag.name}`}
+                  className="hover:underline"
+                >
+                  #{tag.name}
+                </Link>
+              );
+            })}
+          </div>
+        )}
       </div>
 
       {/* Global Menu (SP) */}
