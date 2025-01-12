@@ -1,5 +1,6 @@
 "use client";
 
+import ShareButton from "@/components/ShareButton";
 import VideoRepeatButton, { repeatAtom } from "@/components/VideoRepeatButton";
 import VolumeButton, { volumeAtom } from "@/components/VolumeButton";
 import type { VideoPost } from "@/types";
@@ -106,6 +107,7 @@ export default function VideoCard({ video }: VideoCardProps) {
           onEnded={handleVideoEnd}
           ref={videoRef}
         />
+
         {/* Global Menu (PC) */}
         <div className="z-30 hidden md:block absolute top-4 left-4">
           <div className="flex space-x-3">
@@ -113,6 +115,21 @@ export default function VideoCard({ video }: VideoCardProps) {
             <VideoRepeatButton />
           </div>
         </div>
+
+        {/* Action Menu (PC) */}
+        <div className="z-30 hidden md:block absolute -right-24 bottom-32">
+          <div className="flex flex-col space-y-8">
+            <ShareButton video={video} />
+          </div>
+        </div>
+      </div>
+
+      {/* Video Info */}
+      <div className="absolute bottom-4 left-4">
+        <h3 className="font-semibold text-lg text-white">
+          {video.user.username}
+        </h3>
+        <p className="mt-2 text-sm text-white">{video.message}</p>
       </div>
 
       {/* Global Menu (SP) */}
@@ -123,12 +140,11 @@ export default function VideoCard({ video }: VideoCardProps) {
         </div>
       </div>
 
-      {/* Video Info */}
-      <div className="absolute bottom-4 left-4">
-        <h3 className="font-semibold text-lg text-white">
-          {video.user.username}
-        </h3>
-        <p className="mt-2 text-sm text-white">{video.message}</p>
+      {/* Action Menu (SP) */}
+      <div className="z-30 block md:hidden absolute right-4 bottom-32">
+        <div className="flex flex-col space-y-8">
+          <ShareButton video={video} />
+        </div>
       </div>
     </div>
   );
