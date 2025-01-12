@@ -14,13 +14,13 @@ export default function VolumeButton() {
   return (
     <button
       type="button"
-      className="w-12 h-12 bg-black bg-opacity-85 rounded-full flex items-center justify-center"
+      className="w-12 h-12 bg-gray-900/50 hover:bg-gray-600/50 rounded-full flex items-center justify-center"
       onClick={toggleVolume}
     >
       {isVolumeOn ? (
         <Volume2 className="w-6 h-6 text-white" />
       ) : (
-        <VolumeOff className="w-6 h-6 text-gray-600" />
+        <VolumeOff className="w-6 h-6 text-white" />
       )}
     </button>
   );
