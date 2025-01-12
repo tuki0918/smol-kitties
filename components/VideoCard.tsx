@@ -132,7 +132,9 @@ export default function VideoCard({ video }: VideoCardProps) {
       {/* Video Info */}
       <div className="absolute bottom-4 left-4">
         <h3 className="font-semibold text-lg text-white">
-          {video.user.username}
+          <Link href={`/${video.user.username}`} className="hover:underline">
+            {video.user.username}
+          </Link>
         </h3>
 
         {video.message !== "" && (
