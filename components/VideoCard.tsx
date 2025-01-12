@@ -148,7 +148,7 @@ export default function VideoCard({ video }: VideoCardProps) {
                 <Link
                   key={tag.name}
                   href={`/#/${tag.name}`}
-                  className="hover:underline"
+                  className="hover:underline text-sky-500"
                 >
                   #{tag.name}
                 </Link>
