@@ -5,6 +5,8 @@ import type { VideoPost } from "@/types";
 import { ThumbsUp } from "lucide-react";
 import { useEffect, useState } from "react";
 
+const MAX_LIKES = 10;
+
 interface LikeButtonProps {
   video: VideoPost;
 }
@@ -12,11 +14,13 @@ interface LikeButtonProps {
 export default function LikeButton({ video }: LikeButtonProps) {
   const [isLiked, setIsLiked] = useState(false);
   const [plusOnes, setPlusOnes] = useState<number[]>([]);
+  const [likeCount, setLikeCount] = useState(0);
 
   const handleClick = () => {
-    // TODO: Implement like count
+    // TODO: Implement stored like count
     setIsLiked(true);
     setPlusOnes((prev) => [...prev, Date.now()]);
+    setLikeCount((prev) => prev + 1);
   };
 
   useEffect(() => {
@@ -49,9 +53,15 @@ export default function LikeButton({ video }: LikeButtonProps) {
           key={id}
           className="select-none absolute top-0 left-1/2 transform -translate-x-1/2 animate-fadeOutUp"
         >
-          <div className="relative -left-2 -top-4">
-            <span className="text-white text-lg font-bold">+1</span>
-          </div>
+          {likeCount > MAX_LIKES ? (
+            <div className="relative -left-5 -top-4">
+              <span className="text-white text-lg font-bold">MAX</span>
+            </div>
+          ) : (
+            <div className="relative -left-2 -top-4">
+              <span className="text-white text-lg font-bold">+1</span>
+            </div>
+          )}
         </div>
       ))}
     </div>
