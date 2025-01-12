@@ -8,6 +8,7 @@ import VolumeButton, { volumeAtom } from "@/components/VolumeButton";
 import type { VideoPost } from "@/types";
 import { useAtomValue } from "jotai";
 import { Play } from "lucide-react";
+import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 
 interface VideoCardProps {
@@ -134,6 +135,19 @@ export default function VideoCard({ video }: VideoCardProps) {
           {video.user.username}
         </h3>
         <p className="mt-2 text-sm text-white">{video.message}</p>
+        <div className="mt-2 text-sm text-white space-x-2">
+          {video.tags.map((tag) => {
+            return (
+              <Link
+                key={tag.name}
+                href={`/#/${tag.name}`}
+                className="hover:underline"
+              >
+                #{tag.name}
+              </Link>
+            );
+          })}
+        </div>
       </div>
 
       {/* Global Menu (SP) */}
